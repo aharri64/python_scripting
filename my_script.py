@@ -85,6 +85,29 @@ def read_food_sales_cities():
             f.write('\n')
 
 
+def read_food_sales_categories():
+    all_categories = []
+
+    with open('sampledatafoodsales.csv') as f:
+        data = f.readlines()
+
+        for food_sale in data:
+            # food_sale ( each element in list)
+            split_food_sale = food_sale.split(',')
+            # print(split_food_sale)
+            category = split_food_sale[2]
+            # order_date = split_food_sale[0]
+            # print(category)
+            # append order_date to all dates list
+            all_categories.append(category)
+    print(category)
+
+    with open('categories.txt', 'w') as f:
+        for category in all_categories:
+            f.write(category)
+            f.write('\n')
+
+
 def append_text():
     '''Append data to an existing file'''
     with open('dates.txt', 'a') as f:
@@ -95,6 +118,7 @@ def append_text():
 if __name__ == '__main__':
     # read_only()
     # write_only()
-    read_food_sales()
+    # read_food_sales()
     # read_food_sales_cities()
+    read_food_sales_categories()
     # append_text()
