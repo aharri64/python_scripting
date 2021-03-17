@@ -3,7 +3,7 @@
 def read_only():
     '''a method that only reads the fill'''
     try:
-        file1 = open('data.txt')
+        file1 = open('data.txt', 'r')  # read_only
         text = file1.read()
         print(text)
         file1.close()  # the reason for closing
@@ -21,6 +21,44 @@ def write_only():
     file2.close()
 
 
+'''
+# python will know to close this file
+with open('data.txt') as f:
+    txt = f.read()
+    print(txt)
+'''
+
+
+def read_food_sales():
+    all_dates = []
+    with open('sampledatafoodsales.csv') as f:
+        data = f.readlines()
+
+        for food_sale in data:
+            # food_sale ( each element in list)
+            split_food_sale = food_sale.split(',')
+            # print(split_food_sale)
+            order_date = split_food_sale[0]
+            print(order_date)
+            # append order_date to all dates list
+            all_dates.append(order_date)
+    print(all_dates)
+
+    with open('dates.txt', 'w') as f:
+        for date in all_dates:
+            f.write(date)
+            f.write('\n')
+
+
+def append_text():
+    '''Append data to an existing file'''
+    with open('dates.txt', 'a') as f:
+        f.write('3/17/2021')
+        print('done')
+
+
 if __name__ == '__main__':
     # read_only()
-    write_only()
+    # write_only()
+    # read_food_sales()
+    append_text()
